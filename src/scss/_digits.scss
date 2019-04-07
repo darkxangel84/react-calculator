@@ -1,0 +1,40 @@
+// Button styles for digits
+
+
+
+.digitsContainer {
+    background-color: #d5d6d7;
+    padding: 20px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+.row {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px 10px;
+
+  .digit {
+    background-color: $colorone;
+    border-radius: 50px;
+    width:80px;
+    height: 80px;
+    font-size: 32px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color .2s ease-in-out, box-shadow .5 ease-out;
+    border: 3px solid darken($colorone, 50%);
+    box-shadow: 3px 3px 5px;
+    &:active {
+        background-color: darken($colorone, 20%);
+        box-shadow: none;
+    }
+
+    }
+
+    .equals, .add, .mutiple, .divide, .subtract {
+        background-color: $colorthree;
+    } 
+}
