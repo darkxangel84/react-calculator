@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-
-import Value from '../components/value'
-import Digits from '../components/digits'
+import React, { Component } from 'react';
+import saferEval from 'safer-eval';
+import Digits from '../components/digits';
+import Value from '../components/value';
 
 class Base extends Component {
   constructor(props){
     super(props)
     this.state = {
-      digits: ['C', 'c', '%', '/', 7, 8, 9, '*', 4, 5, 6, '-', 1, 2, 3, '+', 0, '.','='],
+      digits: ['/','*','-', '+', 7, 8, 9, 4, 5, 6,  1, 2, 3, 0, '.', 'C','=' ],
       value: 0,
       calculation: [],
     }
@@ -15,21 +15,32 @@ class Base extends Component {
   // getting Value of digit pressed ---
   gettingValue = (e) => {
     let val = e.currentTarget.textContent
-    console.log(val)
     this.setState({calculation: [...this.state.calculation, val]});
-    
   }
 
   // clear array ---
   clearValue = () => {
-    this.setState({calculation: []});
+    this.setState({
+      calculation: [],
+      value: 0}
+    );
   }
 
   equals = () => {
-    let string = this.state.calculation.toString();
-    console.log(string);
-    // const total = eval(string);
-    // console.log(total);
+    // joining the calculation array together to a string and removing all whitespaces so you get a number - 232 instead of 2 3 2
+    let string = this.state.calculation.join('').replace(/\s/g, "");
+   
+    // calling saferEval to caculate the sum passed in.
+    if(string.match(/\d+/g)) {
+      const total = saferEval(string);
+      console.log(total);
+
+      // setting the total to the value in state
+      this.setState({
+        value: total,
+        calculation: []
+      })
+    }
   }
 
   render() {

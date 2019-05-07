@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
  class Digits extends Component {
 
@@ -9,18 +9,20 @@ import React, { Component } from 'react'
      
       if(digit >= 0 || digit <=9 ){
         return <li className="digit num" 
+        // Digits on calculator
         onClick={(e) => this.props.gettingValue(e)} key={i}> {digit}
       </li>
       } else if (digit === '=') {
         // Return the Equals button
-        return <li className="digit equals" onClick={() => this.props.equals()}> {digit}
+        return <li key={i} className="digit equals" onClick={() => this.props.equals()}> {digit}
       </li>
       } else if (digit === 'C' || digit === 'c') {
         return <li className="digit clear" 
+        // clear function ----
         onClick={(e) => this.props.clearValue(e)} key={i} > {digit}
       </li>
       } else {
-        return <li className="digit" 
+        return <li className="digit sum" 
         onClick={(e) => this.props.gettingValue(e)} key={i} > {digit}
         </li>
       }

@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
  class Value extends Component {
   render() {
-    const {calculation} = this.props.data;
+    const {calculation, value} = this.props.data;
     
-    const digits = calculation.map(digit => digit)
+    const digits = calculation.map(digit => digit);
 
     return (
       
       <div className="inputBox">
-        <span>{calculation.length <= 0 ? 0 : digits}</span>
+      {/* if there isn't a value show the digits being clicked. else show the value. */}
+      {!value ? <span>{calculation.length <= 0 ? 0 : digits.join('').replace(/\s/g, "")}</span> : value}
       </div>
     )
   }
